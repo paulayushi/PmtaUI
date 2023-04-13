@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'PmtaUI'`, () => {
+  it(`should have as title 'PMTA-UI'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('PmtaUI');
+    expect(app.title).toEqual('PMTA-UI');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('PmtaUI app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('PMTA-UI app is running!');
   });
 });

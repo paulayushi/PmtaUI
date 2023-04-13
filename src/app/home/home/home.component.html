@@ -1,0 +1,23 @@
+<div class="container mt-3">
+  <div *ngIf="!toggleRegisterComp" style="text-align: center">
+    <h3>Login to fetch member details or register yourself</h3>    
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-4">
+          <app-login></app-login>
+        </div>
+      </div>
+    </div>
+    <h3 class="mt-3">If you are not registered, please register yourself</h3>
+    <div class="text-center">    
+      <button class="btn btn-secondary mr-2" (click)="toggleRegister()">Register</button>
+    </div>
+  </div>
+  <div *ngIf="toggleRegisterComp" class="container">
+    <div class="row justify-content-center">
+      <div class="col-4">
+        <app-register-member (registerToggleMode)="cancelToggleRegisterMode($event)"></app-register-member>
+      </div>
+    </div>
+  </div>
+</div>

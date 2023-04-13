@@ -1,0 +1,34 @@
+<div class="table-responsiveness">
+  <table class="member-table center" *ngIf="memberTasks; else nocontent">  
+    <thead>
+        <tr class="table-row">
+            <th>Member Id</th>
+            <th>Member Name</th>
+            <th>Task Name</th>
+            <th>Delivarables</th>
+            <th>Task Start Date</th>
+            <th>Task End Date</th>
+            <th>Project Start Date</th>
+            <th>Project End Date</th>
+            <th>Allocation Percentage</th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr class="table-row" *ngFor="let task of memberTasks">
+        <td>{{task.memberId}}</td>
+        <td>{{task.memberName}}</td>
+        <td>{{task.taskName}}</td>
+        <td>{{task.delivarables}}</td>
+        <td>{{task.taskStartDate | date:'shortDate'}}</td>
+        <td>{{task.taskEndDate | date:'shortDate'}}</td>
+        <td>{{task.projectStartDate | date:'shortDate'}}</td>
+        <td>{{task.projectEndDate | date:'shortDate'}}</td>
+        <td>{{task.allocationPercentage}}</td>
+      </tr>      
+    </tbody>    
+  </table>
+  
+  <ng-template #nocontent>
+    <span>No task is available for this member!</span>
+  </ng-template>  
+</div>

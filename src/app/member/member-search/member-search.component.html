@@ -1,0 +1,24 @@
+<!-- <div class="col">
+    <a class="btn btn-success float-right cursor-pointer" (click)="logout()"><i class="fa fa-sign-out"></i>Logout</a>
+</div> -->
+<div class="float-right mr-5">
+    <button class="btn btn-success" type="button" (click)="logout()"><i class="fa fa-sign-out"></i>Logout</button>
+</div>
+<div>
+    <form class="text-align-center">
+        <span class="margin-right">Enter Member Id:</span>
+        <mat-form-field>
+            <input type="number" matInput placeholder="Search for member tasks.." name="search" [(ngModel)]="search">
+            <button matSuffix mat-button (click)="fetchTaskDetailsByMemberId()">
+                <mat-icon>search</mat-icon>
+            </button>
+        </mat-form-field>
+        <br />
+    </form>
+</div>
+
+<app-member-task-details *ngIf="!errorMsg && search; else memberNotExist" [memberTasks]="memberTasks">
+</app-member-task-details>
+<ng-template #memberNotExist>
+    <span *ngIf="errorMsg != 'No error'">{{errorMsg}}</span>
+</ng-template>
