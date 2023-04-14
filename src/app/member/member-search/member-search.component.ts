@@ -27,7 +27,13 @@ export class MemberSearchComponent implements OnInit {
         this.errorMsg = '' ;
         this.memberTasks = response;
       }, error => {
-        this.toastrSvc.error('Please enter a valid member id!');
+        this.memberTasks = null;
+        if(error.status == 400){
+          this.toastrSvc.error("Please provide valid member id!!");
+        }
+        else{
+          this.toastrSvc.error("Something went wrong, please try after sometime!!");
+        }
       });
     }    
   }

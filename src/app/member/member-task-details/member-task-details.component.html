@@ -1,4 +1,4 @@
-<div class="table-responsiveness">
+<div class="table-responsiveness mt-3">
   <table class="member-table center" *ngIf="memberTasks; else nocontent">  
     <thead>
         <tr class="table-row">
@@ -19,16 +19,23 @@
         <td>{{task.memberName}}</td>
         <td>{{task.taskName}}</td>
         <td>{{task.delivarables}}</td>
-        <td>{{task.taskStartDate | date:'shortDate'}}</td>
-        <td>{{task.taskEndDate | date:'shortDate'}}</td>
-        <td>{{task.projectStartDate | date:'shortDate'}}</td>
-        <td>{{task.projectEndDate | date:'shortDate'}}</td>
-        <td>{{task.allocationPercentage}}</td>
+        <td>{{task.taskStartDate | date:'dd/MM/yyyy'}}</td>
+        <td>{{task.taskEndDate | date:'dd/MM/yyyy'}}</td>
+        <td>{{task.projectStartDate | date:'dd/MM/yyyy'}}</td>
+        <td>{{task.projectEndDate | date:'dd/MM/yyyy'}}</td>
+        <td *ngIf="!isEditable">{{task.allocationPercentage}}</td>
+        <td *ngIf="isEditable"><input [(ngModel)]="task.allocationPercentage"></td>
+        <td *ngIf="!isEditable"><a type="button" (click)="editAllocation()">Edit</a></td>
+        <td *ngIf="isEditable">
+          <button class="btn btn-sm btn-primary" (click)="updateAllocationPercentage(task.memberId)">Update</button>
+        </td>
       </tr>      
     </tbody>    
   </table>
   
   <ng-template #nocontent>
-    <span>No task is available for this member!</span>
+    <div class="text-align-center mr-5">
+      <span>No task is available. Please try searching with valid member id....</span>
+    </div>
   </ng-template>  
 </div>

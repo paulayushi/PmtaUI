@@ -1,6 +1,3 @@
-<!-- <div class="col">
-    <a class="btn btn-success float-right cursor-pointer" (click)="logout()"><i class="fa fa-sign-out"></i>Logout</a>
-</div> -->
 <div class="float-right mr-5">
     <button class="btn btn-success" type="button" (click)="logout()"><i class="fa fa-sign-out"></i>Logout</button>
 </div>
@@ -17,8 +14,4 @@
     </form>
 </div>
 
-<app-member-task-details *ngIf="!errorMsg && search; else memberNotExist" [memberTasks]="memberTasks">
-</app-member-task-details>
-<ng-template #memberNotExist>
-    <span *ngIf="errorMsg != 'No error'">{{errorMsg}}</span>
-</ng-template>
+<app-member-task-details [memberTasks]="memberTasks"></app-member-task-details>

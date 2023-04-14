@@ -21,8 +21,8 @@ export class LoginComponent implements OnInit {
   login() {
     this.authSvc.login(this.user).subscribe(
       next => {
-        this.router.navigate(['member-search']);
         this.toastrSvc.success('Logged in successfully.');
+        this.router.navigate(['member-search']);
       },
       error => {
         this.toastrSvc.error('Please enter your valid credential!');
