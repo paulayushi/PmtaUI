@@ -1,41 +1,61 @@
 <div class="table-responsiveness mt-3">
-  <table class="member-table center" *ngIf="memberTasks; else nocontent">  
-    <thead>
-        <tr class="table-row">
-            <th>Member Id</th>
-            <th>Member Name</th>
-            <th>Task Name</th>
-            <th>Delivarables</th>
-            <th>Task Start Date</th>
-            <th>Task End Date</th>
-            <th>Project Start Date</th>
-            <th>Project End Date</th>
-            <th>Allocation Percentage</th>
-        </tr>
-    </thead>
-    <tbody>
-      <tr class="table-row" *ngFor="let task of memberTasks">
-        <td>{{task.memberId}}</td>
-        <td>{{task.memberName}}</td>
-        <td>{{task.taskName}}</td>
-        <td>{{task.delivarables}}</td>
-        <td>{{task.taskStartDate | date:'dd/MM/yyyy'}}</td>
-        <td>{{task.taskEndDate | date:'dd/MM/yyyy'}}</td>
-        <td>{{task.projectStartDate | date:'dd/MM/yyyy'}}</td>
-        <td>{{task.projectEndDate | date:'dd/MM/yyyy'}}</td>
-        <td *ngIf="!isEditable">{{task.allocationPercentage}}</td>
-        <td *ngIf="isEditable"><input [(ngModel)]="task.allocationPercentage"></td>
-        <td *ngIf="!isEditable"><a type="button" (click)="editAllocation()">Edit</a></td>
-        <td *ngIf="isEditable">
-          <button class="btn btn-sm btn-primary" (click)="updateAllocationPercentage(task.memberId)">Update</button>
-        </td>
-      </tr>      
-    </tbody>    
-  </table>
-  
+  <div *ngIf="memberTasks; else nocontent">
+    <div>
+      <h2 class="margin-left-4">Member details:</h2>
+      <table class="member-table center mt-1">  
+        <thead>
+            <tr class="table-row">
+                <th>Member Id</th>
+                <th>Member Name</th>
+                <th>Project Start Date</th>
+                <th>Project End Date</th>
+                <th>Allocation Percentage</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr class="table-row">
+            <td>{{memberTasks[0].memberId}}</td>
+            <td>{{memberTasks[0].memberName}}</td>
+            <td>{{memberTasks[0].projectStartDate | date:'dd/MM/yyyy'}}</td>
+            <td>{{memberTasks[0].projectEndDate | date:'dd/MM/yyyy'}}</td>
+            <td *ngIf="!isEditable">{{memberTasks[0].allocationPercentage}}</td>
+            <td *ngIf="isEditable"><input [(ngModel)]="memberTasks[0].allocationPercentage"></td>
+            <td *ngIf="!isEditable && isManager && showAllocationEditButton">
+              <button type="button" class="btn btn-sm" (click)="editAllocation()">Allocation <i class="fa fa-edit"></i></button>
+            </td>
+            <td *ngIf="isEditable && isManager">
+              <button class="btn btn-sm btn-primary" (click)="updateAllocationPercentage(memberTasks[0].memberId)">Update</button>
+            </td>
+          </tr>      
+        </tbody>    
+      </table>
+    </div>   
+
+    <div class="mt-3">
+      <h2 class="margin-left-4">Task details:</h2>
+      <table class="member-table center mt-1" *ngIf="memberTasks; else nocontent">  
+        <thead>
+            <tr class="table-row">
+              <th>Task Name</th>
+              <th>Delivarables</th>
+              <th>Task Start Date</th>
+              <th>Task End Date</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr class="table-row" *ngFor="let task of memberTasks">
+            <td>{{task.taskName}}</td>
+            <td>{{task.delivarables}}</td>
+            <td>{{task.taskStartDate | date:'dd/MM/yyyy'}}</td>
+            <td>{{task.taskEndDate | date:'dd/MM/yyyy'}}</td>
+          </tr>      
+        </tbody>    
+      </table>
+    </div>    
+  </div>  
   <ng-template #nocontent>
     <div class="text-align-center mr-5">
       <span>No task is available. Please try searching with valid member id....</span>
     </div>
-  </ng-template>  
+  </ng-template>   
 </div>

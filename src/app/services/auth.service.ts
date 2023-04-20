@@ -12,7 +12,7 @@ import { LoginUser } from '../models/login-user';
 export class AuthService {
 
   baseUrl = environment.baseUrl;
-  decodedToken: string;  
+  decodedToken: any;  
 
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {}
 

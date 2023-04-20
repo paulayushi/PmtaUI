@@ -26,3 +26,7 @@ tr:hover {background-color: #ddd;}
 .table-responsiveness{
     overflow-x:auto;
 }
+
+.margin-left-4{
+    margin-left: 4rem;
+}

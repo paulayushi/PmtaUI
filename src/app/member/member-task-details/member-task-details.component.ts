@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { switchMap } from 'rxjs';
 import { MemberTask } from 'src/app/models/member-task';
+import { AuthService } from 'src/app/services/auth.service';
 import { MemberService } from 'src/app/services/member.service';
 
 @Component({
@@ -7,11 +9,19 @@ import { MemberService } from 'src/app/services/member.service';
   templateUrl: './member-task-details.component.html',
   styleUrls: ['./member-task-details.component.css']
 })
-export class MemberTaskDetailsComponent implements OnInit {
+export class MemberTaskDetailsComponent implements OnInit,OnChanges {
   @Input() memberTasks: MemberTask[];
+  @Input() isManager: boolean;
+  @Input() nameId: number;  
   isEditable:boolean = false;
+  showAllocationEditButton: boolean;
 
   constructor(private memberSvc: MemberService) { }
+  
+  ngOnChanges(changes: SimpleChanges): void {
+    this.isEditable = false;
+    this.showAllocationEditButton = this.nameId != this.memberTasks[0].memberId;
+  }
 
   ngOnInit(): void {
   }
@@ -22,14 +32,11 @@ export class MemberTaskDetailsComponent implements OnInit {
 
   updateAllocationPercentage(memberId: number){
     this.memberSvc.updateAllocationPercentage(memberId)
-      .subscribe(() => {        
-        this.memberSvc.getMemberTaskDetails(memberId)
-          .subscribe( (response: MemberTask[]) => {
-            this.memberTasks = response;
-          }, error => {            
-          });
-      }, error => {      
-    });
-    this.isEditable = false;
+      .pipe(
+        switchMap(() => this.memberSvc.getMemberTaskDetails(memberId))
+      ).subscribe( (resp:MemberTask[]) => {
+        this.isEditable = false;
+        this.memberTasks = resp;
+      });
   }
 }
