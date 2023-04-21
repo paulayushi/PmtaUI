@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://localhost:7137/projectmgmt/api/v1/manager/'
+  baseUrl: 'https://localhost:7137/projectmgmt/api/v1/'
 };
 
 /*

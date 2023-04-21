@@ -15,12 +15,12 @@ export class MemberService {
   constructor(private httpSvc: HttpClient) { }
 
   getMemberTaskDetails(memberId: number): Observable<MemberTask[]> {
-    return this.httpSvc.get<MemberTask[]>(this.baseUrl + 'list/' + memberId + '/taskDetails', 
+    return this.httpSvc.get<MemberTask[]>(this.baseUrl + 'member/list/' + memberId + '/taskDetails', 
                       {headers: this.reqHeader});
   }
 
-  updateAllocationPercentage(memberId: number) {
-    return this.httpSvc.patch<MemberTask[]>(this.baseUrl + 'update/allocationPercentage', 
-                        { memberId }, {headers: this.reqHeader});
+  updateAllocationPercentage(memberId: number, allocationPercentage: number) {
+    return this.httpSvc.patch<MemberTask[]>(this.baseUrl + 'manager/update/allocationPercentage', 
+                        { memberId, allocationPercentage }, {headers: this.reqHeader});
   }
 }

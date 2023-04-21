@@ -6,6 +6,7 @@ import { User } from 'src/app/models/user';
 import { LoginUser } from 'src/app/models/login-user';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { ToastrService } from 'ngx-toastr';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-register-member',
@@ -69,6 +70,7 @@ export class RegisterMemberComponent implements OnInit {
       }, (error: any) => {
         this.toastrSvc.error(error.error);
       }, () => {
+        delay(200);
         let login = new LoginUser();
         login.userId = this.user.memberId;
         login.password = this.user.password;

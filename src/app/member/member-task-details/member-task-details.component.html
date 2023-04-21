@@ -24,7 +24,7 @@
               <button type="button" class="btn btn-sm" (click)="editAllocation()">Allocation <i class="fa fa-edit"></i></button>
             </td>
             <td *ngIf="isEditable && isManager">
-              <button class="btn btn-sm btn-primary" (click)="updateAllocationPercentage(memberTasks[0].memberId)">Update</button>
+              <button class="btn btn-sm btn-primary" (click)="updateAllocationPercentage(memberTasks[0].memberId, memberTasks[0].allocationPercentage)">Update</button>
             </td>
           </tr>      
         </tbody>    
@@ -55,7 +55,7 @@
   </div>  
   <ng-template #nocontent>
     <div class="text-align-center mr-5">
-      <span>No task is available. Please try searching with valid member id....</span>
+      <span>No task is available.</span>
     </div>
   </ng-template>   
 </div>

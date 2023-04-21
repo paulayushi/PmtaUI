@@ -17,7 +17,7 @@ export class AuthService {
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {}
 
   login(model: LoginUser): Observable<any> {
-    return this.http.post(this.baseUrl + 'login', model).pipe(
+    return this.http.post(this.baseUrl + 'member/login', model).pipe(
       map((response: any) => {
         const loginToken = response;
         if (response) {
@@ -29,7 +29,7 @@ export class AuthService {
   }
 
   register(user: User): Observable<any>{
-    return this.http.post(this.baseUrl + 'add-member', user);
+    return this.http.post(this.baseUrl + 'manager/add-member', user);
   }
 
   loggedIn(): boolean{
