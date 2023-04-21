@@ -17,7 +17,7 @@ export class RegisterMemberComponent implements OnInit {
 
   @Output() registerToggleMode = new EventEmitter();
   user: User;
-  registerForm!: FormGroup;
+  registerForm: FormGroup;
   bsConfig: Partial<BsDatepickerConfig> | undefined;
 
   constructor(private authSvc: AuthService, private formBuilder: FormBuilder, 

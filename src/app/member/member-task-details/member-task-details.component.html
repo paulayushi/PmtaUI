@@ -1,7 +1,7 @@
-<div class="table-responsiveness mt-3">
+<div class="table-responsiveness">
   <div *ngIf="memberTasks; else nocontent">
     <div>
-      <h2 class="margin-left-4">Member details:</h2>
+      <h2 class="margin-left">Member details:</h2>
       <table class="member-table center mt-1">  
         <thead>
             <tr class="table-row">
@@ -32,7 +32,7 @@
     </div>   
 
     <div class="mt-3">
-      <h2 class="margin-left-4">Task details:</h2>
+      <h2 class="margin-left">Task details:</h2>
       <table class="member-table center mt-1" *ngIf="memberTasks; else nocontent">  
         <thead>
             <tr class="table-row">

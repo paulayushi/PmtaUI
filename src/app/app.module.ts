@@ -17,6 +17,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { JwtModule } from '@auth0/angular-jwt';
 import { MemberSearchComponent } from './member/member-search/member-search.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { CreateTaskComponent } from './member/create-task/create-task.component';
 
 export function getToken() {
   return localStorage.getItem('token');
@@ -29,7 +30,8 @@ export function getToken() {
     HomeComponent,
     RegisterMemberComponent,
     LoginComponent,
-    MemberSearchComponent
+    MemberSearchComponent,
+    CreateTaskComponent
   ],
   imports: [
     BrowserModule,

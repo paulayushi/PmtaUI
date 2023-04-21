@@ -1,6 +1,14 @@
 .margin-right{
     margin-right: 5px;
 }
+
+.div-float-right{
+    overflow: hidden;
+}
+.div-float-right button {
+    float: right;
+    margin-right: 10%;
+}
 .error-text{
     color: red;
 }

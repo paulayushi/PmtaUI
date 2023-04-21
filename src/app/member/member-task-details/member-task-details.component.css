@@ -1,7 +1,7 @@
 .member-table {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 90%;
+    width: 80%;
     text-align: center;
   }
   
@@ -27,6 +27,6 @@ tr:hover {background-color: #ddd;}
     overflow-x:auto;
 }
 
-.margin-left-4{
-    margin-left: 4rem;
+.margin-left{
+    margin-left: 10%;
 }

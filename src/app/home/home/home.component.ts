@@ -1,8 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { MemberTask } from 'src/app/models/member-task';
-import { AuthService } from 'src/app/services/auth.service';
-import { MemberService } from 'src/app/services/member.service';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +9,7 @@ export class HomeComponent implements OnInit {
 
   toggleRegisterComp = false;
 
-  constructor(private authSvc: AuthService) { }
+  constructor() { }
 
   ngOnInit(): void {
   } 
@@ -24,9 +20,5 @@ export class HomeComponent implements OnInit {
 
   cancelToggleRegisterMode(toggleRegisterMode: boolean){
     this.toggleRegisterComp = toggleRegisterMode;
-  }
-
-  loggedIn(): boolean {
-    return this.authSvc.loggedIn();
   }
 }

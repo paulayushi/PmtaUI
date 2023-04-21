@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { CreateTask } from '../models/create-task';
 import { MemberTask } from '../models/member-task';
 
 @Injectable({
@@ -22,5 +23,10 @@ export class MemberService {
   updateAllocationPercentage(memberId: number, allocationPercentage: number) {
     return this.httpSvc.patch<MemberTask[]>(this.baseUrl + 'manager/update/allocationPercentage', 
                         { memberId, allocationPercentage }, {headers: this.reqHeader});
+  }
+
+  assignTask(task: CreateTask) {
+    return this.httpSvc.post<MemberTask[]>(this.baseUrl + 'manager/assign-task', 
+                        task, {headers: this.reqHeader});
   }
 }

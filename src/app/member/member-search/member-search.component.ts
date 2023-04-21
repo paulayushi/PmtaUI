@@ -43,10 +43,8 @@ export class MemberSearchComponent implements OnInit {
       });
     }    
   }
-
-  logout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['home']);
-    this.toastrSvc.info('Logged out successfully.');
+  
+  assignTask(){
+    this.router.navigate(['assign-task']);
   }
 }
