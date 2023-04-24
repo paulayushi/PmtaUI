@@ -41,7 +41,7 @@
                     class="form-control"
                     bsDatepicker
                     [bsConfig]="bsConfig"
-                    placeholder="Project start date">
+                    placeholder="Task start date">
                   <div class="invalid-feedback" *ngIf="taskForm.controls['taskStartDate'].errors?.['required']">
                     Task start date is required.
                   </div>
@@ -53,7 +53,7 @@
                     class="form-control"
                     bsDatepicker
                     [bsConfig]="bsConfig"
-                    placeholder="Project end date">
+                    placeholder="Task end date">
                   <div class="invalid-feedback" *ngIf="taskForm.controls['taskEndDate'].errors?.['required']">
                     Task end date is required.
                   </div>

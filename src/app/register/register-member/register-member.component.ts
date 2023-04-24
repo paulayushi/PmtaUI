@@ -70,7 +70,7 @@ export class RegisterMemberComponent implements OnInit {
       }, (error: any) => {
         this.toastrSvc.error(error.error);
       }, () => {
-        delay(200);
+        delay(300);
         let login = new LoginUser();
         login.userId = this.user.memberId;
         login.password = this.user.password;

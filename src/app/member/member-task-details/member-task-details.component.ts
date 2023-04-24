@@ -31,6 +31,10 @@ export class MemberTaskDetailsComponent implements OnInit,OnChanges {
   }
 
   updateAllocationPercentage(memberId: number, allocationPercentage: number){
+    if(allocationPercentage < 0 || allocationPercentage > 100){
+      this.toastrSvc.error('Allocation should be provided as percentage(0,100)');
+      return;
+    }
     this.memberSvc.updateAllocationPercentage(memberId, allocationPercentage)
       .pipe(
         delay(200),
@@ -40,7 +44,7 @@ export class MemberTaskDetailsComponent implements OnInit,OnChanges {
         this.memberTasks = resp;
       },(err: any) => {
         this.isEditable = true;
-        this.toastrSvc.error('Allocation should be provided as percentage(0,100)');
+        this.toastrSvc.error('Something went wrong, please try after sometime.');
       });
   }
 }
