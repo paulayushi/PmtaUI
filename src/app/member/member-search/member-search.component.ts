@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { ToastrService } from 'ngx-toastr';
 import { MemberTask } from 'src/app/models/member-task';
-import { AuthService } from 'src/app/services/auth.service';
 import { MemberService } from 'src/app/services/member.service';
 
 @Component({
@@ -17,11 +17,12 @@ export class MemberSearchComponent implements OnInit {
   nameId: number;
 
   constructor(private memberSvc: MemberService, private toastrSvc: ToastrService, 
-    private router: Router, private authSvc: AuthService) { }
+    private router: Router, private jwtHelper: JwtHelperService) { }
 
   ngOnInit(): void {
-    this.isManager = this.authSvc.decodedToken.IsManager;
-    this.nameId = this.authSvc.decodedToken.nameid;
+    let token = localStorage.getItem('token');
+    this.isManager = this.jwtHelper.decodeToken(token).IsManager;
+    this.nameId = this.jwtHelper.decodeToken(token).nameid;
     this.memberSvc.getMemberTaskDetails(this.nameId).subscribe(resp => {
       this.memberTasks = resp;
     });    
@@ -43,7 +44,7 @@ export class MemberSearchComponent implements OnInit {
       });
     }    
   }
-  
+
   assignTask(){
     this.router.navigate(['assign-task']);
   }
