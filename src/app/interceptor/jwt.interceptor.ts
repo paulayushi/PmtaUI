@@ -11,7 +11,7 @@ import { AuthService } from '../services/auth.service';
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
 
-  constructor(private authSvc: AuthService) {}
+  constructor() {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     request = request.clone({
