@@ -11,22 +11,20 @@ import { MemberTask } from '../models/member-task';
 export class MemberService {
 
   baseUrl = environment.baseUrl;
-  reqHeader = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
 
   constructor(private httpSvc: HttpClient) { }
 
   getMemberTaskDetails(memberId: number): Observable<MemberTask[]> {
-    return this.httpSvc.get<MemberTask[]>(this.baseUrl + 'member/list/' + memberId + '/taskDetails', 
-                      {headers: this.reqHeader});
+    return this.httpSvc.get<MemberTask[]>(this.baseUrl + 'member/list/' + memberId + '/taskDetails');
   }
 
   updateAllocationPercentage(memberId: number, allocationPercentage: number) {
     return this.httpSvc.patch<MemberTask[]>(this.baseUrl + 'manager/update/allocationPercentage', 
-                        { memberId, allocationPercentage }, {headers: this.reqHeader});
+                        { memberId, allocationPercentage });
   }
 
   assignTask(task: CreateTask) {
     return this.httpSvc.post<MemberTask[]>(this.baseUrl + 'manager/assign-task', 
-                        task, {headers: this.reqHeader});
+                        task);
   }
 }

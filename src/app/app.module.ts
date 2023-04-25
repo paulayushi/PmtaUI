@@ -10,7 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RegisterMemberComponent } from './register/register-member/register-member.component';
 import { LoginComponent } from './login/login/login.component';
 import { ToastrModule } from 'ngx-toastr';
@@ -18,6 +18,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { MemberSearchComponent } from './member/member-search/member-search.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { CreateTaskComponent } from './member/create-task/create-task.component';
+import { JwtInterceptor } from './interceptor/jwt.interceptor';
 
 export function getToken() {
   return localStorage.getItem('token');
@@ -54,6 +55,11 @@ export function getToken() {
     MatIconModule
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
